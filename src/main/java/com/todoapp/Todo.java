@@ -20,15 +20,9 @@ public class Todo {
         this.createdOn = dbObject.getDate("createdOn");
     }
 
-    public String getTitle() {
-        return title;
-    }
+    public String getTitle() { return title; }
 
-    public boolean isDone() {
-        return done;
-    }
+    public boolean isDone() { return done; }
 
-    public Date getCreatedOn() {
-        return createdOn;
-    }
+    public Date getCreatedOn() { return createdOn; }
 }

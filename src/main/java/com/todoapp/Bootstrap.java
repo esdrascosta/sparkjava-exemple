@@ -1,6 +1,8 @@
 package com.todoapp;
 import com.mongodb.*;
 import com.mongodb.client.MongoDatabase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static spark.Spark.ipAddress;
 import static spark.Spark.port;
@@ -11,6 +13,7 @@ import static spark.Spark.staticFileLocation;
  */
 public class Bootstrap {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Bootstrap.class);
     private static final String IP_ADDRESS =
             System.getenv("OPENSHIFT_DIY_IP") != null ? System.getenv("OPENSHIFT_DIY_IP") : "localhost";
     private static final int PORT =
@@ -22,6 +25,7 @@ public class Bootstrap {
         port(PORT);
         staticFileLocation("/public");
         new TodoResource(new TodoService(mongo()));
+        LOGGER.info("Application and MongoDB Connection OK");
     }
 
     private static MongoDatabase mongo() {
